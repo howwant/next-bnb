@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { userActions } from "../../store/user";
+
 import CloseXIcon from "../../public/static/svg/modal/modal_colose_x_icon.svg"
 import MailIcon from "../../public/static/svg/input/mail.svg"
 import PersonIcon from "../../public/static/svg/input/person.svg"
 import OpenedIcon from "../../public/static/svg/input/opened_eye.svg"
 import ClosedEyeIcon from "../../public/static/svg/input/closed_eye.svg"
+
 import palette from "../../styles/palette";
 import Input from "../common/input";
 import Selector from "../common/Selector";
-import { daysList, monthsList, yearsList } from "../../lib/staticData";
 import Button from "../common/Button";
+import { daysList, monthsList, yearsList } from "../../lib/staticData";
+import { signupAPI } from "../../lib/api/auth";
 
 
-const Container = styled.div`
+const Container = styled.form`
     width: 568px;
     padding: 32px;
     background-color: white;
@@ -90,6 +95,8 @@ const SignUpModal: React.FC = () => {
     const [birthDay, setBirthDay] = useState<string | null>(null);
     const [birthMonth, setBirthMonth] = useState<string | null>(null);
 
+    const dispatch = useDispatch();
+
     //* 이메일 주소 변경시
     const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEmail(event.target.value);
@@ -128,8 +135,28 @@ const SignUpModal: React.FC = () => {
         setBirthYear(event.target.value);
     }
 
+    //* 회원가입 폼 제출하기
+    const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        try {
+            const signUpBody = {
+                email,
+                lastname,
+                firstname,
+                password,
+                birthday: new Date(
+                    `${birthYear}-${birthMonth!.replace("월", "")}-${birthDay}`
+                  ).toISOString(),
+            };
+            const { data } = await signupAPI(signUpBody);
+            dispatch(userActions.setLoggedUser(data));
+        } catch (e) {
+            console.log(e);
+        }
+    };
+    
     return (
-        <Container>
+        <Container onSubmit={onSubmitSignUp}>
             <CloseXIcon className="modal-close-x-icon" />
             <div className="input-wrapper">
                 <Input 
