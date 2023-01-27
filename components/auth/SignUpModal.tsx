@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { userActions } from "../../store/user";
@@ -10,11 +10,14 @@ import OpenedIcon from "../../public/static/svg/input/opened_eye.svg"
 import ClosedEyeIcon from "../../public/static/svg/input/closed_eye.svg"
 
 import palette from "../../styles/palette";
-import Input from "../common/input";
+import Input from "../common/Input";
 import Selector from "../common/Selector";
 import Button from "../common/Button";
 import { daysList, monthsList, yearsList } from "../../lib/staticData";
 import { signupAPI } from "../../lib/api/auth";
+import useValidateMode from "../../hooks/useValidateMode";
+import PasswordWarning from "./PasswordWarning";
+
 
 
 const Container = styled.form`
@@ -85,6 +88,9 @@ const Container = styled.form`
   }
 `;
 
+// 비밀번호 최소 자릿수
+const PASSWORD_MIN_LENGTH = 8;
+
 const SignUpModal: React.FC = () => {
     const [email, setEmail] = useState("");
     const [lastname, setLastname] = useState("");
@@ -94,6 +100,8 @@ const SignUpModal: React.FC = () => {
     const [birthYear, setBirthYear] = useState<string | null>(null);
     const [birthDay, setBirthDay] = useState<string | null>(null);
     const [birthMonth, setBirthMonth] = useState<string | null>(null);
+    const [passwordFocused, setPasswordFocused] = useState(false);
+    const { setValidateMode }:any = useValidateMode();
 
     const dispatch = useDispatch();
 
@@ -134,10 +142,47 @@ const SignUpModal: React.FC = () => {
     const onChangeBirthYear = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setBirthYear(event.target.value);
     }
+    //* 비밀번호 인풋에 포커스 되었을 때
+    const onFocusPassword = () =>{
+        setPasswordFocused(true);
+    };
 
+    //* password가 이름이나 이메일을 포함하는지
+    const isPasswordHasNameOrEmail = useMemo(
+        () =>
+        !password ||
+        !lastname ||
+        password.includes(lastname) ||
+        password.includes(email.split("@")[0]),
+        [password, lastname, email]
+    );
+    
+    // 비밀번호가 최소 자릿수 이상인지
+    const isPasswordOverMinLength = useMemo(
+        () => !!password && password.length >= PASSWORD_MIN_LENGTH,
+        [password]
+    );
+
+    // 비밀빈호가 숫자나 특수기호를 포함하는지
+    const isPasswordHasNumberOrSymbol = useMemo(
+        () =>
+        !(
+            /[{}[\]/?.,;:|)*~`!^\-_+<>@#$%&\\=('"]/g.test(password) ||
+            /[0-9]/g.test(password)
+        ),
+        [password]
+    );
+ 
     //* 회원가입 폼 제출하기
     const onSubmitSignUp = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
+        setValidateMode(true);
+
+        if (!email || !lastname || !firstname || !password) {
+            return undefined;
+        }
+
         try {
             const signUpBody = {
                 email,
@@ -196,8 +241,29 @@ const SignUpModal: React.FC = () => {
                 )} 
                 value={password}
                 onChange={onChangePassword}
+                onFocus={onFocusPassword}
+                useValidation
+                isValid={
+                  !isPasswordHasNameOrEmail &&
+                  isPasswordOverMinLength &&
+                  !isPasswordHasNumberOrSymbol
+                }
+                errorMessage="비밀번호를 입력하세요"
                 />
             </div>
+            {passwordFocused && (
+                <>
+                <PasswordWarning
+                    isValid={isPasswordHasNameOrEmail}
+                    text="비밀번호에 본인 이름이나 이메일 주소를 포함할 수 없습니다."
+                />
+                <PasswordWarning isValid={!isPasswordOverMinLength} text="최소 8자" />
+                <PasswordWarning
+                    isValid={isPasswordHasNumberOrSymbol}
+                    text="숫자나 기호를 포함하세요."
+                />
+                </>
+            )}
             <h4 className="sign-up-birthday-label">생일</h4>
             <p className="sign-up-birthday-info">만 18세 이상의 성인만 회원으로 가입할 수 있습니다. 생일은 다른 에어비앤비 사용자에게 공개되지 않습니다.</p>
             <div className="sign-up-modal-birthday-selectors">

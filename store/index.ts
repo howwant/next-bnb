@@ -3,9 +3,11 @@ import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers } from "redux";
 import { TypedUseSelectorHook, useSelector as useReduxSelector } from "react-redux";
 import user from "./user";
+import common from "./common";
 
 const rootReducer = combineReducers({
-    user: user.reducer,
+  common: common.reducer,
+  user: user.reducer,
 });
 
 // 스토어 타입
@@ -38,5 +40,6 @@ const initStore: MakeStore<any> = () => {
     initialRootState = store.getState();
     return store;
 };
+
 
 export const wrapper = createWrapper(initStore);
