@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import { useDispatch } from "react-redux";
-import { userActions } from "../../store/user";
 
 import CloseXIcon from "../../public/static/svg/modal/modal_colose_x_icon.svg"
 import MailIcon from "../../public/static/svg/input/mail.svg"
@@ -17,7 +16,8 @@ import { daysList, monthsList, yearsList } from "../../lib/staticData";
 import { signupAPI } from "../../lib/api/auth";
 import useValidateMode from "../../hooks/useValidateMode";
 import PasswordWarning from "./PasswordWarning";
-
+import { authActions } from "../../store/auth";
+import { userActions } from "../../store/user";
 
 
 const Container = styled.form`
@@ -25,6 +25,7 @@ const Container = styled.form`
     padding: 32px;
     background-color: white;
     z-index: 11;
+    position: relative;
     .modal-close-x-icon {
         cursor: pointer;
         display: block;
@@ -80,12 +81,12 @@ const Container = styled.form`
     .sign-up-modal-birthday-year-selector {
        width: 33.3333%;
     }
-    .sign-up-modal-submit-button-wrapper {
+  }
+  .sign-up-modal-submit-button-wrapper {
     margin-bottom: 16px;
     padding-bottom: 16px;
     border-bottom: 1px solid ${palette.gray_eb};
     }
-  }
   .sign-up-modal-set-login {
     color: ${palette.dark_cyan};
     margin-left: 8px;
@@ -95,6 +96,16 @@ const Container = styled.form`
 
 // 비밀번호 최소 자릿수
 const PASSWORD_MIN_LENGTH = 8;
+
+// 선택 할 수 없는 월 option
+const disabledMonths = ["월"];
+
+// 선택 할 수 없는 일 option
+const disabledDays = ["일"];
+
+// 선택 할 수 없는 년 option
+const disabledYears = ["년"];
+
 interface IProps {
     closeModal: () => void;
 }
@@ -237,6 +248,11 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
         };
     },[]);
 
+    //* 로그인 모달로 변경하기
+    const changeToLoginModal = () => {
+        dispatch(authActions.setAuthMode("login"));
+    };
+
     return (
         <Container onSubmit={onSubmitSignUp}>
             <CloseXIcon className="modal-close-x-icon" onClick={closeModal}/>
@@ -307,8 +323,9 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
                 <div className="sign-up-modal-birthday-month-selector">
                     <Selector
                         options={monthsList} 
-                        disabledOptions = {["월"]}
+                        disabledOptions={disabledMonths}
                         defaultValue="월"
+                        value={birthMonth}
                         onChange={onChangeBirthMonth}
                         isVaild={!!birthMonth}
                         />
@@ -316,8 +333,9 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
                 <div className="sign-up-modal-birthday-day-selector">
                     <Selector
                         options={daysList} 
-                        disabledOptions = {["일"]}
+                        disabledOptions={disabledDays}
                         defaultValue="일"
+                        value={birthDay}
                         onChange={onChangeBirthDay}
                         isVaild={!!birthDay}
                         />
@@ -325,10 +343,11 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
                 <div className="sign-up-modal-birthday-year-selector">
                     <Selector
                         options={yearsList} 
-                        disabledOptions = {["년"]}
+                        disabledOptions={disabledYears}
                         defaultValue="년"
                         onChange={onChangeBirthYear}
                         isVaild={!!birthYear}
+                        value={birthYear}
                         />
                 </div>
             </div>
@@ -337,12 +356,15 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
                     가입하기
                 </Button>
             </div>
-            <p className="sign-up-modal-set-login"
+            <p>이미 에어비앤비 계정이 있나요?
+            <span className="sign-up-modal-set-login"
                 role="presentation"
-                onClick={()=> {}}
+                onClick={changeToLoginModal}
             >
                 로그인
+            </span>
             </p>
+
         </Container>
     );
 };

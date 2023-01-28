@@ -14,11 +14,12 @@ const globalStyle = css`
     line-height: 1.2;
   }
 
-  /* a {
+  a {
     text-decoration: none;
+    color: ${palette.black};
   }
 
-  @font-face {
+   /*  @font-face {
     font-family: Airbnb Cereal;
     font-weight: 400;
     font-display: swap;
