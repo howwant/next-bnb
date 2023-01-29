@@ -327,7 +327,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
                         defaultValue="월"
                         value={birthMonth}
                         onChange={onChangeBirthMonth}
-                        isVaild={!!birthMonth}
+                        isValid={!!birthMonth}
                         />
                 </div>
                 <div className="sign-up-modal-birthday-day-selector">
@@ -337,7 +337,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
                         defaultValue="일"
                         value={birthDay}
                         onChange={onChangeBirthDay}
-                        isVaild={!!birthDay}
+                        isValid={!!birthDay}
                         />
                 </div>
                 <div className="sign-up-modal-birthday-year-selector">
@@ -346,7 +346,7 @@ const SignUpModal: React.FC<IProps> = ({ closeModal }) => {
                         disabledOptions={disabledYears}
                         defaultValue="년"
                         onChange={onChangeBirthYear}
-                        isVaild={!!birthYear}
+                        isValid={!!birthYear}
                         value={birthYear}
                         />
                 </div>
