@@ -46,9 +46,27 @@ const getButtonColor = (color: string, colorReverse: boolean) => {
     }
 };
 
+// 버튼 크기 구하기
+const getButtonSize = (size: "small" | "medium") => {
+    switch (size) {
+      case "medium":
+        return css`
+          height: 48px;
+        `;
+      case "small":
+        return css`
+          font-size: 14px;
+          height: 36px;
+        `;
+      default:
+        return "";
+    }
+  };
+
 interface StyledButtonProps {
     width: string | undefined;
     colorReverse: boolean;
+    size: "small" | "medium";
 }
 
 const Container = styled.button<StyledButtonProps>`
@@ -57,7 +75,6 @@ const Container = styled.button<StyledButtonProps>`
   align-items: center;
   width: 100%;
   height: 48px;
-  padding: 0 15px;
   border: 0;
   border-radius: 4px;
   font-size: 18px;
@@ -69,6 +86,7 @@ const Container = styled.button<StyledButtonProps>`
   svg {
     margin-right: 12px;
   }
+  ${(props) =>getButtonSize(props.size)}
 `;
 
 // const normalButtonStyle = css`
@@ -109,6 +127,7 @@ interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     width?: string;
     colorReverse?: boolean;
     icon?: JSX.Element;
+    size?: "small" | "medium";
 }
 
 const Button: React.FC<IProps> = ({ 
@@ -117,6 +136,7 @@ const Button: React.FC<IProps> = ({
     width,
     colorReverse = false,
     icon,
+    size ="medium",
     ...props
      }) => {
     return (
@@ -124,7 +144,8 @@ const Button: React.FC<IProps> = ({
         {...props} 
         color={color}
         width={width}
-        colorReverse={colorReverse}       
+        colorReverse={colorReverse}      
+        size={size} 
         >
             {icon}
             {children}
