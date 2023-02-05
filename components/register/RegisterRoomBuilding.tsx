@@ -1,13 +1,21 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styled from "styled-components";
 import palette from "../../styles/palette";
 import Selector from "../common/Selector";
-import { largeBuildingTypeList } from "../../lib/staticData";
 import { useSelector } from "../../store";
 import { registerRoomActions } from "../../store/registerRoom";
 import { useDispatch } from "react-redux";
 import RadioGroup from "../common/RadioGroup";
 import RegisterRoomFooter from "./RegisterRoomFooter";
+import {
+	largeBuildingTypeList,
+	apartmentBuildingTypeList,
+	houseBuildingTypeList,
+	secondaryUnitBuildingTypeList,
+	uniqueSpaceBuildingTypeList,
+	bnbBuildingTypeList,
+	boutiquesHotelBuildingTypeList,
+} from '../../lib/staticData';
 
 const Container = styled.div`
     padding: 62px 30px 100px;
@@ -75,6 +83,9 @@ const RegisterRoomBuilding: React.FC = () => {
     const buildingType = useSelector((state) => state.registerRoom.buildingType);
     const roomType = useSelector((state) => state.registerRoom.roomType);
     const isSetUpForGuest = useSelector((state) => state.registerRoom.isSetUpForGuest);
+    const [detailBuildingOptions, setDetailBuildingOptions] = useState<string[]>(
+		[]
+	);
 
     const dispatch = useDispatch();
 
@@ -103,74 +114,58 @@ const RegisterRoomBuilding: React.FC = () => {
     };
 
     //* 선택된 건물 유형 options
-    const detailBuildingOptions = useMemo(() => {
-        switch (largeBuildingType) {
-            case "아파트" : {
-                const {
-                    apartmentBuildingTypeList,
-                } = require("../../lib/staticData");
-                dispatch(
-                    registerRoomActions.setBuildingType(apartmentBuildingTypeList[0])
-                );
-                return apartmentBuildingTypeList;
+	useEffect(() => {
+        (async () => {
+            switch (largeBuildingType) {
+                case "아파트" : {
+                    dispatch(
+                        registerRoomActions.setBuildingType(apartmentBuildingTypeList[0])
+                    );
+                    return setDetailBuildingOptions(apartmentBuildingTypeList);
+                }
+                case "주택" : {
+                    dispatch(
+                        registerRoomActions.setBuildingType(houseBuildingTypeList[0])
+                    );
+                    return setDetailBuildingOptions(houseBuildingTypeList);
+                }
+                case "별채" : {
+                    dispatch(
+                        registerRoomActions.setBuildingType(secondaryUnitBuildingTypeList[0])
+                    );
+                    return setDetailBuildingOptions(secondaryUnitBuildingTypeList);
+                }
+                case "독특한 장소" : {
+                    dispatch(
+                        registerRoomActions.setBuildingType(uniqueSpaceBuildingTypeList[0])
+                    );
+                    return setDetailBuildingOptions(uniqueSpaceBuildingTypeList);
+                }
+                case "B&B" : {
+                    dispatch(
+                        registerRoomActions.setBuildingType(bnbBuildingTypeList[0])
+                    );
+                    return setDetailBuildingOptions(bnbBuildingTypeList);
+                }
+                case "부티크호텔" : {
+                    dispatch(
+                        registerRoomActions.setBuildingType(boutiquesHotelBuildingTypeList[0])
+                    );
+                    return setDetailBuildingOptions(boutiquesHotelBuildingTypeList);
+                }
+    
+            default: 
+                return [];
             }
-            case "주택" : {
-                const {
-                    houseBuildingTypeList,
-                } = require("../../lib/staticData");
-                dispatch(
-                    registerRoomActions.setBuildingType(houseBuildingTypeList[0])
-                );
-                return houseBuildingTypeList;
-            }
-            case "별채" : {
-                const {
-                    secondaryUnitBuildingTypeList,
-                } = require("../../lib/staticData");
-                dispatch(
-                    registerRoomActions.setBuildingType(secondaryUnitBuildingTypeList[0])
-                );
-                return secondaryUnitBuildingTypeList;
-            }
-            case "독특한 장소" : {
-                const {
-                    uniqueSpaceBuildingTypeList,
-                } = require("../../lib/staticData");
-                dispatch(
-                    registerRoomActions.setBuildingType(uniqueSpaceBuildingTypeList[0])
-                );
-                return uniqueSpaceBuildingTypeList;
-            }
-            case "B&B" : {
-                const {
-                    bnbBuildingTypeList,
-                } = require("../../lib/staticData");
-                dispatch(
-                    registerRoomActions.setBuildingType(bnbBuildingTypeList[0])
-                );
-                return bnbBuildingTypeList;
-            }
-            case "부티크호텔" : {
-                const {
-                    boutiquesHotelBuildingTypeList,
-                } = require("../../lib/staticData");
-                dispatch(
-                    registerRoomActions.setBuildingType(boutiquesHotelBuildingTypeList[0])
-                );
-                return boutiquesHotelBuildingTypeList;
-            }
-
-        default: 
-            return [];
-        }
+        })()
     },[largeBuildingType]);
 
     //* 모든 값이 있는지 확인하기
     const isValid = useMemo(() => {
         if(!largeBuildingType || !buildingType || !roomType || !isSetUpForGuest===null) {
-            return false
+            return false;
         }
-        return true
+        return true;
     }, [largeBuildingType, buildingType, roomType, isSetUpForGuest])
 
     return (
@@ -180,9 +175,8 @@ const RegisterRoomBuilding: React.FC = () => {
             <div className="register-room-building-selector-wrapper">
                 <Selector
                     type="register"
-                    value={largeBuildingType || undefined}
+                    value={largeBuildingType ? largeBuildingType : '하나를 선택해주세요.'}
                     label="우선 범위를 좁혀볼까요?"
-                    defaultValue="하나를 선택해주세요."
                     disabledOptions={disabledlargeBuildingTypeOptions}
                     options={largeBuildingTypeList}
                     onChange={onChangeLargeBuildingType}
@@ -193,15 +187,15 @@ const RegisterRoomBuilding: React.FC = () => {
                 <Selector
                     type="register"
                     disabled={!largeBuildingType}
-                    value={buildingType || undefined}
+                    value={buildingType ? buildingType : undefined}
                     label="건물 유형을 선택하세요."
-                    defaultValue="하나를 선택해주세요"
                     options={detailBuildingOptions}
                     onChange={onChangeBuildingType}
                     isValid={!!buildingType}
                 />
             </div>
             {buildingType && (
+                <>
                 <div className="register-room-type-radio">
                     <RadioGroup
                         label="게스트가 묵게 될 숙소 유형을 골라주세요."
@@ -211,16 +205,18 @@ const RegisterRoomBuilding: React.FC = () => {
                         isValid={!!roomType}
                     />
                 </div>
+                <div className="registr-room-is-setup-for-guest-radio">
+                    <RadioGroup
+                        label="게스트만 사용하도록 만들어진 숙소인가요?"
+                        value={isSetUpForGuest}
+                        onChange={onChangeIsSetUpForGuest}
+                        options={isSetUpForGuestOptions}
+                        isValid={isSetUpForGuest !== null}
+                    />
+                </div>
+                </>
             )}
-            <div className="registr-room-is-setup-for-guest-radio">
-                <RadioGroup
-                    label="게스트만 사용하도록 만들어진 숙소인가요?"
-                    value={isSetUpForGuest}
-                    onChange={onChangeIsSetUpForGuest}
-                    options={isSetUpForGuestOptions}
-                    isValid={isSetUpForGuest !== null}
-                />
-            </div>
+
             <RegisterRoomFooter
                 isValid={isValid}
                 prevHref="/"
