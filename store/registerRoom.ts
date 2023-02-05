@@ -1,38 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { BedType } from "../types/rooms";
-
-type RegisterRoomState = {
-    largeBuildingType: string | null;
-    buildingType: string | null;
-    roomType: string | null;
-    isSetUpForGuest: boolean | null;
-
-    maximumGuestCount: number;
-    bedroomCount: number;
-    bedCount: number;
-    bedList: {id: number; beds: { type: BedType; count: number}[]}[];
-    publicBedList: {type: BedType; count:number}[];
-
-    
-    bathroomCount: number;
-    bathroomType: "private" | "public" | null;
-
-    country: string;
-    city: string;
-    district: string;
-    streetAddress: string;
-    detailAddress: string;
-    postcode: string;
-    latitude: number;
-    longitude: number;
-
-    amentities: string[];
-    conveniences: string[];
-    photos: string[];
-    description: string;
-    title: string;
-    price: number;
-}
+import { BedType, RegisterRoomState } from "../types/rooms";
 
 //* 초기상태
 const initialState: RegisterRoomState = {
@@ -90,6 +57,10 @@ const initialState: RegisterRoomState = {
     title: "",
     //* 숙소 요금
     price: 0,
+    //* 예약 시작 날짜
+    startDate: null,
+    //* 예약 마감 날짜
+    endDate: null,
 };
 
 const registerRoom = createSlice({
@@ -274,6 +245,14 @@ const registerRoom = createSlice({
         //* 숙소 요금 변경하기
         setPrice(state, action: PayloadAction<number>) {
             state.price = action.payload;
+        },
+        //* 예약 시작 날짜 변경하시
+        setStartDate(state, action: PayloadAction<string | null>) {
+            state.startDate = action.payload;
+        },
+        //* 예약 마감 날짜 변경하시
+        setEndDate(state, action: PayloadAction<string | null>) {
+            state.endDate = action.payload;
         },
     }
 });
