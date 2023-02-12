@@ -37,6 +37,11 @@ const getButtonColor = (color: string, colorReverse: boolean) => {
                 background-color: white;
                 color: ${palette.gray_48};
             `;
+        case "amaranth":
+            return css`
+                background-color: ${palette.amaranth};
+                color: white;  
+            `;
         default:
             return css`
                 background-color: white;
@@ -89,41 +94,9 @@ const Container = styled.button<StyledButtonProps>`
   ${(props) =>getButtonSize(props.size)}
 `;
 
-// const normalButtonStyle = css`
-//   width: 100%;
-//   height: 48px;
-//   border: 0;
-//   border-radius: 4px;
-//   background-color: ${palette.bittersweet};
-//   color: white;
-//   font-size: 16px;
-//   font-weight: 800;
-//   outline: none;
-//   cursor: pointer;
-// `;
-
-// const RegisterButtonStyle = css`
-//   width: 161px;
-//   height: 45px;
-//   border: 1px solid ${palette.gray_c4};
-//   background-color: white;
-//   border-radius: 4px;
-//   color: ${palette.gray_48};
-//   font-size: 18px;
-//   font-weight: 700;
-//   outline: none;
-//   cursor: pointer;
-// `;
-
-// const Container = styled.button<{ styleType:"normal"| "register"}>`
-//     ${({ styleType}) => 
-//         styleType === "register" ? RegisterButtonStyle : normalButtonStyle}
-//     ${(props) => getButtonColor(props.color || "")}
-// `;
-
 interface IProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
-    color?: "dark_cyan" | "white" | "bittersweet"| "gray_c4";
+    color?: "dark_cyan" | "white" | "bittersweet"| "gray_c4" |"amaranth";
     width?: string;
     colorReverse?: boolean;
     icon?: JSX.Element;
