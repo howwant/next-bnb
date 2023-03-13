@@ -1,3 +1,4 @@
+import { RoomType } from "./rooms";
 import { UserType } from "./user";
 
 //* 유저 redux state
@@ -20,4 +21,9 @@ export type SearchRoomState ={
     adultCount: number;
     childrenCount: number;
     infantsCount: number;
+};
+
+// 숙소 redux state
+export type RoomState = {
+    rooms: RoomType[];
 };
