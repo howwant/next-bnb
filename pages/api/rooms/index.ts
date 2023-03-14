@@ -17,9 +17,50 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         } = req.query;
         try {
             const rooms = Data.room.getList();
+
+            //* 위치로 필터링하기
+            const filteredRooms = rooms.filter((room) => {
+                if (latitude && latitude !== "0" && longitude && longitude !== "0"){
+                    if(
+                        !(
+                            Number(latitude) - 0.5 < room.latitude &&
+                            room.latitude < Number(latitude) + 0.05 &&
+                            Number(longitude) - 0.5 < room.longitude &&
+                            room.longitude < Number(longitude) + 0.05
+                        ) 
+                    ){
+                        return false;
+                    }
+                }
+                if (checkInDate) {
+                    if (
+                        new Date(checkInDate as string) < new Date(room.startDate) ||
+                        new Date(checkInDate as string) > new Date(room.endDate)
+                    ) {
+                        return false;
+                    }
+                }
+                if (checkOutDate) {
+                    if (
+                        new Date(checkOutDate as string) < new Date(room.startDate) ||
+                        new Date(checkOutDate as string) > new Date(room.endDate)
+                    ) {
+                        return false;
+                    }
+                }
+
+                if (
+                    room.maximumGuestCount <
+                    Number(adultCount as string) + 
+                    Number(childrenCount as string) * 0.5 || 0) {
+                        return false;
+                }
+
+                return true;
+            })
     
             //* 개수 자르기
-            const limitedRooms = rooms.splice(
+            const limitedRooms = filteredRooms.splice(
                 0 + (Number(page) - 1) * Number(limit),
                 Number(limit)
             );

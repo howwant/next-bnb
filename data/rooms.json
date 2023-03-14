@@ -1,1 +1,323 @@
-[{"id":1,"largeBuildingType":"주택","buildingType":"카사","roomType":"entire","isSetUpForGuest":true,"maximumGuestCount":2,"bedroomCount":3,"bedCount":2,"bedList":[{"id":1,"beds":[{"type":"싱글","count":1}]},{"id":2,"beds":[]},{"id":3,"beds":[]}],"publicBedList":[],"bathroomCount":1.5,"bathroomType":"private","country":"대한민국","city":"인천광역시","district":"서구","streetAddress":"왕길동 산5-1","detailAddress":"","postcode":"404-290","latitude":37.5851883,"longitude":126.6644644,"amentities":["무선 인터넷"],"conveniences":["주방"],"photos":["https://hwawon-bucket.s3.amazonaws.com/img_dormitory__e30daa7f-18a2-4881-b896-084046ad87eb.png","https://hwawon-bucket.s3.ap-northeast-2.amazonaws.com/img_dormitory__6bd42b24-3729-4231-84f7-fca1ffdf5a42.png"],"description":"","title":"","price":100000000,"startDate":"2023-03-13T00:00:00.000Z","endDate":"2023-10-20T00:00:00.000Z","hostId":1,"createdAt":"2023-03-13T12:52:32.416Z","updatedAt":"2023-03-13T12:52:32.416Z"}]
+[
+    {
+       "id":1,
+       "largeBuildingType":"주택",
+       "buildingType":"카사",
+       "roomType":"entire",
+       "isSetUpForGuest":true,
+       "maximumGuestCount":2,
+       "bedroomCount":3,
+       "bedCount":2,
+       "bedList":[
+          {
+             "id":1,
+             "beds":[
+                {
+                   "type":"싱글",
+                   "count":1
+                }
+             ]
+          },
+          {
+             "id":2,
+             "beds":[
+                
+             ]
+          },
+          {
+             "id":3,
+             "beds":[
+                
+             ]
+          }
+       ],
+       "publicBedList":[
+          
+       ],
+       "bathroomCount":1.5,
+       "bathroomType":"private",
+       "country":"대한민국",
+       "city":"인천광역시",
+       "district":"서구",
+       "streetAddress":"왕길동 산5-1",
+       "detailAddress":"",
+       "postcode":"404-290",
+       "latitude":37.5851883,
+       "longitude":126.6644644,
+       "amentities":[
+          "무선 인터넷"
+       ],
+       "conveniences":[
+          "주방"
+       ],
+       "photos":[
+          "https://hwawon-bucket.s3.amazonaws.com/img_dormitory__e30daa7f-18a2-4881-b896-084046ad87eb.png",
+          "https://hwawon-bucket.s3.ap-northeast-2.amazonaws.com/img_dormitory__6bd42b24-3729-4231-84f7-fca1ffdf5a42.png"
+       ],
+       "description":"",
+       "title":"",
+       "price":100000000,
+       "startDate":"2023-03-13T00:00:00.000Z",
+       "endDate":"2023-10-20T00:00:00.000Z",
+       "hostId":1,
+       "createdAt":"2023-03-13T12:52:32.416Z",
+       "updatedAt":"2023-03-13T12:52:32.416Z"
+    },
+    {
+       "id":2,
+       "largeBuildingType":"아파트",
+       "buildingType":"아파트",
+       "roomType":"entire",
+       "isSetupForGuest":true,
+       "maximumGuestCount":1,
+       "bedRoomCount":1,
+       "bedCount":2,
+       "bedList":[
+          {
+             "id":1,
+             "beds":[
+                {
+                   "type":"더블",
+                   "count":1
+                }
+             ]
+          }
+       ],
+       "publicBedList":[
+          
+       ],
+       "bathroomCount":2,
+       "bathroomType":"private",
+       "country":"대한민국",
+       "city":"서울특별시",
+       "district":"마포구",
+       "streetAddress":"토정로31길 ３４",
+       "detailAddress":"",
+       "postcode":"121-070",
+       "latitude":37.542103,
+       "longitude":126.9433582,
+       "amentities":[
+          "옷장/서랍장",
+          "벽난로",
+          "조식, 커피, 차",
+          "샴푸",
+          "TV",
+          "무선 인터넷"
+       ],
+       "conveniences":[
+          
+       ],
+       "photos":[
+          "https://jinsujj-next-bnb-bucket.s3.ap-northeast-2.amazonaws.com/Airbnb_Texas__caa335ed-1e96-4ff3-b075-529144773de1.jpg"
+       ],
+       "description":"럭셔리한 느낌의 숙소를 찾으시나요?",
+       "title":"호텔 느낌의 Bnb",
+       "price":150000,
+       "startDate":"2020-05-08T00:00:00.000Z",
+       "endDate":"2021-02-03T00:00:00.000Z",
+       "hostId":1,
+       "createdAt":"2022-05-07T14:32:59.199Z",
+       "updatedAt":"2022-05-07T14:32:59.199Z"
+    },
+    {
+       "id":3,
+       "largeBuildingType":"독특한 숙소",
+       "buildingType":"캠핑카",
+       "roomType":"entire",
+       "isSetUpForGuest":true,
+       "maximumGuestCount":3,
+       "bedroomCount":1,
+       "bedCount":2,
+       "bedList":[
+          {
+             "id":1,
+             "beds":[
+                {
+                   "type":"에어 매트릭스",
+                   "count":1
+                }
+             ]
+          }
+       ],
+       "publicBedList":[
+          
+       ],
+       "bathroomCount":1,
+       "bathroomType":"private",
+       "country":"일본",
+       "city":"가고시마현",
+       "district":"Amami",
+       "streetAddress":"도로명주소",
+       "detailAddress":"",
+       "postcode":"012-345",
+       "latitude":31.60225558905051,
+       "longitude":130.51064894649073,
+       "amenities":[
+          "난방",
+          "TV",
+          "무선 인터넷",
+          "샴푸",
+          "에어컨",
+          "게스트 전용 출입문",
+          "벽난로",
+          "헤어 드라이어"
+       ],
+       "conveniences":[
+          "세탁 공간 - 세탁기",
+          "주방",
+          "주차",
+          "수영장"
+       ],
+       "photos":[
+          "https://bbd-next-airbnb.s3.amazonaws.com/627cf30a-2791-452e-8e6d-0ab465d93f5c__6904801d-352f-47aa-9cfd-2111731b3047.webp",
+          "https://bbd-next-airbnb.s3.ap-northeast-2.amazonaws.com/35809bd4-cf04-4d90-9c92-041c9a965ffb__cfac2f08-fd0e-4504-b46a-3919a060ef09.webp",
+          "https://bbd-next-airbnb.s3.ap-northeast-2.amazonaws.com/adbcb6df-f304-408c-af5a-77429cc660ec__bd72a576-86cc-43ed-baac-2cd2e7d32523.webp",
+          "https://bbd-next-airbnb.s3.ap-northeast-2.amazonaws.com/eda48f94-a260-4a48-a518-55d81cb8dda0__8999e6a1-b639-4c5d-b2f0-34972e92ce02.webp",
+          "https://bbd-next-airbnb.s3.ap-northeast-2.amazonaws.com/ee920ff9-7e31-43db-bcb5-54da5e2623fa__9d38f0b3-6932-475c-9283-f9be833e1a06.webp"
+       ],
+       "description":"아마미 공항에서 10분거리에 위치,\n레스토랑, 베이커리, 슈퍼마켓, 대중목욕탕, 유명한 해변과 관광지가 차로 15분 이내에 있습니다.",
+       "title":"전체 오션프론트 글램핑! 공항에서 10분 거리! 홀리 캠프 에어스트림",
+       "price":216275,
+       "startDate":"2022-12-04T00:00:00.000Z",
+       "endDate":"2024-06-13T00:00:00.000Z",
+       "hostId":1,
+       "createdAt":"2022-12-01T14:25:18.252Z",
+       "updatedAt":"2022-12-01T14:25:18.252Z"
+    },
+    {
+       "id":4,
+       "largeBuildingType":"독특한 숙소",
+       "buildingType":"텐트",
+       "roomType":"entire",
+       "isSetUpForGuest":true,
+       "maximumGuestCount":3,
+       "bedroomCount":1,
+       "bedCount":2,
+       "bedList":[
+          {
+             "id":1,
+             "beds":[
+                {
+                   "type":"퀸",
+                   "count":1
+                },
+                {
+                   "type":"소파",
+                   "count":1
+                }
+             ]
+          }
+       ],
+       "publicBedList":[
+          {
+             "type":"해먹",
+             "count":1
+          }
+       ],
+       "bathroomCount":1,
+       "bathroomType":"private",
+       "country":"인도네시아",
+       "city":"발리",
+       "district":"Tegallalang",
+       "streetAddress":"도로명주소",
+       "detailAddress":"",
+       "postcode":"493-428",
+       "latitude":-8.403536255597094,
+       "longitude":115.22725534978039,
+       "amenities":[
+          "무선 인터넷",
+          "업무가능 공간/책상",
+          "벽난로",
+          "옷장/서랍장",
+          "헤어 드라이어",
+          "샴푸",
+          "난방",
+          "에어컨",
+          "TV"
+       ],
+       "conveniences":[
+          "주방",
+          "주차",
+          "헬스장",
+          "수영장"
+       ],
+       "photos":[
+          "https://bbd-next-airbnb.s3.ap-northeast-2.amazonaws.com/b84dd659-d38d-45a7-b183-46235755de7b__fd9cf172-a163-425f-b09e-45154777c48e.webp",
+          "https://bbd-next-airbnb.s3.ap-northeast-2.amazonaws.com/54224528-3abd-4f36-9bb1-b97ec95da7c8__e8aff9b3-3add-43a9-bc3c-a37421359cd8.webp",
+          "https://bbd-next-airbnb.s3.ap-northeast-2.amazonaws.com/17bd4cfb-076f-4d85-90f1-2ee11d0c4342__34a05a81-37e2-45e6-8168-a8e4f0c2ce20.webp",
+          "https://bbd-next-airbnb.s3.ap-northeast-2.amazonaws.com/a827a954-7ce3-4040-8fb9-a552350ac458__15bc0517-6a9c-4b3f-a93c-abdfedea5bf1.webp"
+       ],
+       "description":"20세기 초에 지어진 화려한 아프리카 사파리를 연상시키는 텐트형 저택은 우아하고 낭만적인 분위기를 자랑하며, 편안하게 주변 열대 숲을 경험할 수 있습니다.",
+       "title":"열대 정글 옆 럭셔리 사파리 텐트",
+       "price":205281,
+       "startDate":"2022-12-01T00:00:00.000Z",
+       "endDate":"2023-12-31T00:00:00.000Z",
+       "hostId":2,
+       "createdAt":"2022-12-01T14:34:24.893Z",
+       "updatedAt":"2022-12-01T14:34:24.893Z"
+    },
+    {
+       "id":5,
+       "largeBuildingType":"독특한 숙소",
+       "buildingType":"헛간",
+       "roomType":"private",
+       "isSetUpForGuest":true,
+       "maximumGuestCount":3,
+       "bedroomCount":1,
+       "bedCount":1,
+       "bedList":[
+          {
+             "id":1,
+             "beds":[
+                {
+                   "type":"에어 매트릭스",
+                   "count":1
+                }
+             ]
+          }
+       ],
+       "publicBedList":[
+          
+       ],
+       "bathroomCount":1,
+       "bathroomType":"private",
+       "country":"대한민국",
+       "city":"경기도",
+       "district":"가평군",
+       "streetAddress":"도로명주소",
+       "detailAddress":"",
+       "postcode":"340-178",
+       "latitude":37.8202232608475,
+       "longitude":127.45495724016936,
+       "amenities":[
+          "무선 인터넷",
+          "TV",
+          "난방",
+          "에어컨",
+          "업무가능 공간/책상",
+          "샴푸",
+          "헤어 드라이어"
+       ],
+       "conveniences":[
+          "주방",
+          "세탁 공간 - 세탁기",
+          "주차",
+          "수영장"
+       ],
+       "photos":[
+          "https://bbd-next-airbnb.s3.ap-northeast-2.amazonaws.com/739cbef0-26d7-41de-b3a9-9e9f93c45657__abc7f928-a285-4a47-bd33-7f51610c757d.webp",
+          "https://bbd-next-airbnb.s3.ap-northeast-2.amazonaws.com/75cca0bd-30d1-4348-9275-cec60434e7ec__e0de9b9e-8c19-4458-9f99-8ac6711c66e0.webp",
+          "https://bbd-next-airbnb.s3.ap-northeast-2.amazonaws.com/5ff36461-3a43-4dce-bc0e-36f2bdf935be__db8e04c3-0d26-4e2f-96d0-76e8584bb146.webp",
+          "https://bbd-next-airbnb.s3.ap-northeast-2.amazonaws.com/3e7cd5df-dc9e-46e7-b71a-4c237225cb87__fb336d4d-a50f-4e28-8e39-08d679a16e01.webp",
+          "https://bbd-next-airbnb.s3.ap-northeast-2.amazonaws.com/01f9bc38-0b15-48d1-b3a6-ba89a53cf32f__fa2e3cc3-86f7-41bf-9bbb-2ca87b662f69.webp"
+       ],
+       "description":"배산임수의 아늑함과 편안함을 누리며 자연과 하나 되어 자유를 만끽할 수 있는 새로운 휴식 문화 공간의 숙소입니다.",
+       "title":"자연과 하나 되어 자유를 만끽할 수 있는 글램핑",
+       "price":124020,
+       "startDate":"2022-12-01T00:00:00.000Z",
+       "endDate":"2023-12-31T00:00:00.000Z",
+       "hostId":3,
+       "createdAt":"2022-12-01T14:39:29.231Z",
+       "updatedAt":"2022-12-01T14:39:29.231Z"
+    }
+ ]

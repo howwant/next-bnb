@@ -7,6 +7,7 @@ import { roomActions } from "../../store/room";
 import { GetServerSideProps, GetServerSidePropsContext } from "next";
 import { RoomType } from "../../types/rooms";
 import { useDispatch } from "react-redux";
+import Header from "../../components/Header";
 
 interface IProps {
     rooms : RoomType[];
@@ -16,7 +17,12 @@ interface IProps {
     const dispatch = useDispatch();
     dispatch(roomActions.setRooms(rooms));
   
-    return <RoomMain />;
+    return(
+        <>
+        <Header />
+        <RoomMain />
+        </>
+    ) ;
   };
   
 export const getServerSideProps = async (context : GetServerSidePropsContext ) => {
