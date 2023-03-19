@@ -13,12 +13,11 @@ const Container = styled.ul`
     width: 858px;
     margin: auto 0;
     
-    // 오류 : 내용이 입력되지 않음
-    //* 첫번째 사진*/
+
+
     .register-room-first-photo-wrapper {
         display: flex;
         width: 858px;
-        height: 433px;
         margin: 0 auto 24px;
         position: relative;
         justify-content: center;
