@@ -1,5 +1,7 @@
 import user from "./user";
 import room from "./room";
-const Data = { user, room };
+import reservation from "./reservation";
+
+const Data = { user, room, reservation };
 
 export default Data;
